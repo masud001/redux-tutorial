@@ -7,6 +7,10 @@ const Counter = () => {
   const dispatch = useDispatch();
   const [IncrementAmount, setIncrementAmount] = useState(0)
   const addValue = Number(IncrementAmount) || 0;
+  const resetAll = ()=>{
+    setIncrementAmount(0)
+    dispatch(reset())
+  }
 
   
 
@@ -17,8 +21,15 @@ const Counter = () => {
       <div className="">
         <button onClick={()=>dispatch(increment())}>Increment</button>
         <button onClick={()=>dispatch(decrement())}>Decrement</button>
-        <button onClick={()=>dispatch(reset())}>Reset</button>
-        <button onClick={()=>dispatch(incrementByAmount(2))}>Increment by 2</button>
+        <br />
+        <input 
+          type="text" 
+          value={IncrementAmount}
+          onChange={(e)=>setIncrementAmount(e.target.value)}
+        />
+        <br />
+        <button onClick={()=>dispatch(incrementByAmount(addValue))}>add value {addValue}</button>
+        <button onClick={resetAll}>Reset</button>
       </div>
     </div>
   )
