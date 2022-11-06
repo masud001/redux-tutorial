@@ -1,13 +1,13 @@
-import Counter from './app/features/counter/Counter';
-import logo from './logo.svg';
+import PostLists from "./app/features/Posts/PostLists";
+
 
 function App() {
 
   return (
     <div className="App">
-     <main>
-        {/* <h1>React redux tutorial</h1> */}
-        <Counter/>
+     <main className='container'>
+        <h1 className='h1 text-uppercase border-bottom border-secondary'>teacher</h1>
+        <PostLists/>
      </main>
     </div>
   );
