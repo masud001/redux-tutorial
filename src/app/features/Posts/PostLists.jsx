@@ -1,20 +1,27 @@
+import React from "react";
 import { useSelector } from "react-redux"
-
+import AddPostForm from "./AddPostForm";
+import {selectAllPosts} from './postSlice'
 const PostLists = () => {
-    const posts = useSelector(state => state.posts);
-    const renderPosts = posts.map((post)=>(
-        <article key={post.id} className='card mb-3'>
-            <div className="card-body">
-                <h3 className='card-title text-capitalize'>{post.title}</h3>
-                <p className='card-text'>{post.content}</p>
-            </div>
-        </article>
+    const posts = useSelector(selectAllPosts);
+    const renderPosts = posts.map((post,index)=>(
+        <div key={post.id+index} className="col-md-3 mb-md-4">
+            <article className='card'>
+                <div className="card-body">
+                    <h3 className='card-title text-capitalize'>{post.title}</h3>
+                    <p className='card-text'>{post.content.substring(0,100)}</p>
+                </div>
+            </article>
+        </div>
     ))
   return (
-    <section>
-        <div>Postlists</div>
-        {renderPosts}
-    </section>
+    <React.Fragment>
+        <AddPostForm/>
+        <section className='row pt-3'>
+            {renderPosts}
+        </section>
+
+    </React.Fragment>
   )
 }
 export default PostLists
